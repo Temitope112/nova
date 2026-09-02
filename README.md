@@ -1,397 +1,254 @@
-# NOVA International Airport
+# NOVA International Airport ✈️
 
-> **Airports are complex. The interface should feel effortless.**
+A modern digital airport experience designed to make every journey feel effortless.
 
-NOVA is a modern digital airport experience designed to rethink how passengers interact with an international airport online.
+NOVA reimagines what an airport website can feel like — combining flight information, journey planning, terminal navigation, airport services, destination discovery, and purposeful motion into one cohesive experience.
 
-Rather than treating an airport website as a collection of information pages, NOVA approaches it as a journey — helping passengers find their flight, prepare for travel, navigate the terminal, discover airport experiences, and understand what comes next.
-
-The project combines **international wayfinding, editorial design, aviation systems, and purposeful motion** to create an airport interface that feels premium, functional, and intuitive.
+> **Airports are complex. The interface shouldn't be.**
 
 ---
 
-## ✈️ The Idea
+## Overview
 
-Most airport websites contain everything a passenger needs, but finding that information can often feel unnecessarily complicated.
+NOVA International Airport is a frontend-focused concept project exploring how thoughtful UI/UX, interaction design, and modern web technologies can improve the digital airport experience.
 
-NOVA explores a different approach.
-
-The experience is structured around five simple passenger needs:
+Rather than approaching the website as a collection of pages and dashboards, NOVA is designed around the passenger journey:
 
 **Find → Prepare → Navigate → Experience → Explore**
 
-Instead of overwhelming users with navigation menus, dashboards, and disconnected information, NOVA attempts to surface the right information at the right point in the journey.
+The goal was to create something that feels commercially believable while still pushing the visual and interactive experience beyond the typical airport website.
 
 ---
 
-## 🌍 Core Experience
+## Live Experience
 
-### Find
-
-Passengers can quickly search for flights and explore departures and arrivals.
-
-The Flights experience includes:
-
-- Departures and arrivals
-- Flight search
-- Airline and destination information
-- Terminal filtering
-- Gate information
-- Flight status
-- Estimated departure times
-- Selected flight details
+🔗 **Live Website:** https://nova-ashen-three.vercel.app/
 
 ---
 
-### Prepare
+## Preview
 
-The **Plan Your Visit** experience helps passengers prepare before arriving at the airport.
-
-Information includes:
-
-- Recommended airport arrival times
-- Travel documents
-- Baggage guidance
-- Airport transport
-- Parking
-- Passenger assistance
-- Pre-travel checklist
+![NOVA International Airport](./public/og-image.jpg)
 
 ---
 
-### Navigate
+## The Idea
 
-NOVA introduces an interactive airport wayfinding experience.
+Airport websites handle a huge amount of information:
 
-Passengers can explore:
+- Flights
+- Terminals
+- Gates
+- Airport services
+- Journey preparation
+- Accessibility
+- Dining and shopping
+- Destinations
+- Passenger support
 
-- Terminal locations
-- Dining
-- Shopping
-- Lounges
-- Family facilities
-- Business facilities
-- Passenger assistance
+That complexity often results in interfaces that feel overwhelming or purely functional.
 
-The interface visualizes routes through the airport rather than presenting locations as a conventional list.
+NOVA explores a different approach.
 
----
-
-### Experience
-
-NOVA treats the airport as more than somewhere passengers wait for a flight.
-
-The airport experience highlights:
-
-- Dining
-- Lounges
-- Shopping
-- Art & culture
-- Family spaces
-- Business facilities
-
-The homepage also introduces **Airport Pulse**, an operational view of the airport showing information such as terminal activity, security waiting times, parking availability, weather, and airport operations.
+The interface uses strong hierarchy, wayfinding-inspired visuals, contextual information, editorial layouts, and motion to help passengers understand where they are, where they're going, and what they can do next.
 
 ---
 
-### Explore
+## Key Experiences
 
-The Explore experience introduces destinations and the wider world accessible through NOVA.
+### Flight Discovery
 
-The page combines editorial storytelling with destination discovery, featuring cities such as:
-
-- London
-- Dubai
-- Paris
-- Cape Town
-- New York
-- Tokyo
-
-It also introduces Lagos as the city behind NOVA's identity.
-
----
-
-## 🧭 My Journey
-
-One of NOVA's core concepts is **My Journey**.
-
-Instead of forcing passengers to repeatedly search for information across different pages, My Journey brings the most relevant parts of their airport experience into one place.
-
-A passenger can follow a journey such as:
-
-```text
-LOS → LHR
-
-Check-in
-   ↓
-Security
-   ↓
-Explore
-   ↓
-Gate
-   ↓
-Boarding
-```
-
-The experience can display:
-
-- Flight number
-- Destination
-- Departure time
-- Boarding time
-- Terminal
-- Gate
-- Aircraft
-- Security waiting time
-- Walking time to gate
-- Current journey stage
-- Airport navigation
-- Recommended next action
-
-The long-term idea is for the journey state to respond dynamically to flight and airport information.
-
----
-
-## 🛫 Pages
-
-```text
-/
-├── Home
-├── Flights
-├── At the Airport
-├── Explore
-├── Plan Your Visit
-└── My Journey
-```
-
-### Home
-
-The homepage introduces the complete NOVA passenger journey.
-
-```text
-Hero
-↓
-Live Departures
-↓
-My Journey
-↓
-Terminal Navigation
-↓
-Destinations
-↓
-Airport Experience
-↓
-Airport Pulse
-↓
-Services
-↓
-Travel Information
-↓
-Final CTA
-```
-
-### Flights
-
-A more detailed operational interface for searching and understanding flights.
-
-### At the Airport
-
-An interactive spatial experience for navigating terminals and discovering airport facilities.
-
-### Explore
-
-An editorial destination and airport discovery experience.
-
-### Plan Your Visit
-
-Practical information passengers need before travelling to NOVA.
+Passengers can explore departures and arrivals, search flights, filter information, and inspect individual flight details through an aviation-inspired flight board.
 
 ### My Journey
 
-A personalized airport journey interface built around a passenger's flight.
+A contextual journey experience transforms flight information into a clear passenger timeline:
+
+**Check-in → Security → Explore → Gate → Boarding**
+
+### Terminal Navigation
+
+An interactive terminal map uses route visualization, location markers, and contextual information to make navigating the airport easier to understand.
+
+### Airport Pulse
+
+A live-operation-inspired interface presents airport conditions such as security waiting times, terminal activity, weather, and operational information.
+
+### Destination Discovery
+
+Editorial destination layouts move beyond traditional airport listings and turn route discovery into a more visual travel experience.
+
+### Airport Experience
+
+Passengers can discover lounges, dining, shopping, art, family facilities, business spaces, and other experiences available throughout the airport.
+
+### Passenger Support
+
+NOVA also includes dedicated experiences for:
+
+- Accessibility
+- Lost & Found
+- Travel information
+- Airport services
+- Help Centre
+- Contact and enquiries
 
 ---
 
-## 🎨 Design Direction
+## Design Direction
 
-NOVA's visual language combines:
+NOVA combines three visual systems:
 
 **International Wayfinding × Editorial Design × Aviation Systems**
 
-The interface draws inspiration from physical airport environments:
+The interface takes inspiration from:
 
-- Runway markings
-- Taxiway systems
+- Airport signage
+- Runway and taxiway markings
 - Departure boards
-- Gate numbers
-- Boarding passes
 - Flight paths
-- Airport coordinates
 - Terminal architecture
-- Wayfinding arrows
-- Operational signage
+- Gate numbering
+- Coordinates
+- Boarding information
+- Premium editorial layouts
 
-The objective is not to create a futuristic airport interface.
-
-Instead, NOVA aims to feel like something that could genuinely exist inside a modern international airport.
-
----
-
-## 🎨 Color System
-
-| Color | Hex | Usage |
-| --- | --- | --- |
-| Ink Navy | `#111820` | Primary dark surface |
-| Warm Ivory | `#F5F2EB` | Warm background |
-| Paper | `#FAF9F6` | Primary light surface |
-| Mist Blue | `#E8EFF1` | Journey / informational surfaces |
-| Soft Sand | `#E9E0D2` | Destination / spatial sections |
-| Stone | `#D7D6D1` | Neutral surfaces |
-| Aviation Blue | `#315B78` | Navigation / important actions |
-| Signal Amber | `#E8A735` | Active states / operational signals |
-
-Signal Amber is intentionally used sparingly.
-
-It represents movement, active states, boarding information, navigation, and other moments requiring attention.
+The result is intentionally spacious, architectural, functional, and motion-driven without becoming overly futuristic.
 
 ---
 
-## 🧩 Design Principles
+## Design Principles
 
-### 1. Complexity belongs behind the interface
+### 01. Clarity Before Decoration
 
-Airports contain enormous amounts of information.
+Every interaction should help passengers understand something or move somewhere.
 
-The passenger should not have to experience that complexity.
+### 02. Motion Should Communicate
 
-### 2. Motion communicates
+Animation is used to reinforce movement, direction, progress, routes, and changes in information — not simply for decoration.
 
-Animation is not added simply to make the website feel modern.
+### 03. Complexity Should Feel Simple
 
-Motion is used to communicate:
+Airport systems are complicated. The passenger-facing interface shouldn't feel that way.
 
-- Direction
-- Progress
-- Route changes
-- Active states
-- Flight movement
-- Journey progression
+### 04. Every Section Has a Purpose
 
-### 3. Information before decoration
+The homepage is structured as a journey rather than a collection of unrelated sections.
 
-Operational information should always remain understandable.
+### 05. Responsive by Design
 
-Visual design supports the information rather than competing with it.
-
-### 4. Different backgrounds, same atmosphere
-
-NOVA avoids placing every section on the same dark background.
-
-Different parts of the passenger journey use different surfaces while maintaining one visual system.
-
-### 5. Mobile is intentional
-
-Responsive behaviour is treated as part of the product design rather than a desktop layout compressed onto a smaller screen.
+The experience is designed to remain intentional across desktop, tablet, and mobile devices.
 
 ---
 
-## 🛠️ Built With
+## Tech Stack
+
+NOVA was developed using:
 
 - **Next.js**
-- **React**
 - **TypeScript**
 - **Tailwind CSS**
 - **Framer Motion**
 - **Lucide React**
 - **React Icons**
 
----
-
-## ⚙️ Frontend Architecture
-
-NOVA currently focuses primarily on the frontend experience.
-
-The project uses:
-
-- Next.js App Router
-- TypeScript for type safety
-- Tailwind CSS for styling
-- Framer Motion for interaction and motion
-- Static typed data for prototype airport information
-
-The current architecture allows static flight and airport data to eventually be replaced by real APIs without requiring the interface to be redesigned.
+The project uses the **Next.js App Router** and is structured around reusable components and feature-specific data.
 
 ---
 
-## 📁 Project Structure
+## Motion & Interaction
+
+Motion plays an important role throughout NOVA.
+
+Some of the interactions include:
+
+- Scroll-driven hero transformation
+- Expanding airport photography
+- Subtle image parallax
+- Animated flight paths
+- Staggered search interactions
+- Flight status transitions
+- Journey progress visualization
+- Interactive terminal routes
+- Destination motion
+- Responsive navigation
+- Contextual hover states
+- Reduced-motion support
+
+The intention was not to animate everything, but to make movement feel connected to the idea of travel.
+
+---
+
+## Pages
+
+NOVA includes dedicated experiences for:
+
+```text
+/
+├── Flights
+├── My Journey
+├── Plan Your Visit
+├── Airport
+│   ├── Airport Map
+│   ├── Dining
+│   ├── Shopping
+│   └── Lounges
+├── Explore
+│   ├── Destinations
+│   └── Airport Experience
+├── Experience
+├── Accessibility
+├── Help Centre
+│   └── Lost & Found
+├── Contact
+├── Privacy
+├── Terms
+└── Cookies
+```
+
+A custom **404 / off-route experience** is also included to keep navigation errors consistent with the NOVA design language.
+
+---
+
+## Project Structure
 
 ```text
 nova/
-│
 ├── app/
 │   ├── components/
-│   │   ├── common/
-│   │   └── home/
-│   │
-│   ├── flights/
-│   │   ├── components/
-│   │   └── page.tsx
-│   │
 │   ├── airport/
-│   │   ├── components/
-│   │   └── page.tsx
-│   │
+│   ├── accessibility/
+│   ├── contact/
+│   ├── experience/
 │   ├── explore/
-│   │   ├── data.ts
-│   │   └── page.tsx
-│   │
-│   ├── plan/
-│   │   ├── data.ts
-│   │   └── page.tsx
-│   │
+│   ├── flights/
 │   ├── journey/
-│   │   ├── components/
-│   │   └── page.tsx
-│   │
-│   ├── globals.css
+│   ├── plan/
+│   ├── privacy/
+│   ├── support/
+│   ├── terms/
+│   ├── cookies/
 │   ├── layout.tsx
+│   ├── not-found.tsx
 │   └── page.tsx
 │
 ├── data/
-│   ├── airport-places.ts
-│   ├── airport-pulse.ts
-│   ├── departures.ts
-│   ├── destinations.ts
-│   ├── experiences.ts
-│   ├── flights.ts
-│   ├── journeys.ts
-│   ├── services.ts
-│   ├── terminal-locations.ts
-│   └── travel-info.ts
-│
 ├── public/
-│   ├── destinations/
-│   ├── experience/
-│   └── airport-hero.png
-│
+├── package.json
 └── README.md
 ```
 
-The project intentionally avoids unnecessary abstraction.
-
-Components are extracted based on **responsibility and interaction complexity**, rather than simply splitting files because they become long.
-
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 Clone the repository:
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/Temitope112/nova.git
 ```
 
-Enter the project:
+Navigate into the project:
 
 ```bash
 cd nova
@@ -409,152 +266,119 @@ Start the development server:
 npm run dev
 ```
 
-Then open:
+Open:
 
 ```text
 http://localhost:3000
 ```
 
----
-
-## 📱 Responsive Design
-
-NOVA is being designed across:
-
-- Desktop
-- Laptop
-- Tablet
-- Mobile
-
-Responsive behaviour includes:
-
-- Adaptive typography
-- Mobile navigation
-- Responsive flight boards
-- Vertical journey timelines
-- Touch-friendly airport navigation
-- Adaptive destination layouts
-- Mobile-friendly information hierarchy
+in your browser.
 
 ---
 
-## ♿ Accessibility
+## Production Build
 
-The project aims to support accessible interaction through:
+To create a production build:
 
-- Semantic HTML
-- Keyboard-accessible controls
-- Descriptive image alternative text
-- Accessible form labels
-- Visible interaction states
-- Reduced-motion considerations
-- Appropriate contrast
-- Responsive text sizing
-
-Accessibility improvements will continue as the project develops.
-
----
-
-## 🧪 Current Status
-
-NOVA is currently under active development.
-
-### Implemented
-
-- [x] Homepage
-- [x] Responsive navigation
-- [x] Footer
-- [x] Flight search interface
-- [x] Departures / arrivals
-- [x] Flight filtering
-- [x] Flight detail experience
-- [x] Airport wayfinding
-- [x] Terminal navigation
-- [x] Destination discovery
-- [x] Airport experience
-- [x] Airport Pulse
-- [x] Airport services
-- [x] Travel information
-- [x] Plan Your Visit
-- [x] My Journey interface
-- [x] Responsive foundations
-- [x] Framer Motion interactions
-
-### In Progress / Planned
-
-- [ ] My Journey time-based progression
-- [ ] Improved reduced-motion support
-- [ ] Full mobile polish
-- [ ] Accessibility audit
-- [ ] Performance optimization
-- [ ] Additional flight states
-- [ ] Detailed destination experiences
-- [ ] Real flight data integration
-- [ ] Real airport operational data
-- [ ] Journey persistence
-
----
-
-## 🔌 Future API Integration
-
-NOVA currently uses mock data so the frontend product experience can be developed independently.
-
-Future versions could integrate APIs for:
-
-```text
-Flight schedules
-Flight status
-Gate changes
-Security waiting times
-Weather
-Parking availability
-Terminal activity
-Airline information
+```bash
+npm run build
 ```
 
-This would allow experiences such as **My Journey** and **Airport Pulse** to respond to actual airport conditions.
+Then run:
+
+```bash
+npm run start
+```
 
 ---
 
-## ⚠️ Disclaimer
+## Performance
 
-NOVA International Airport is a fictional airport created as a product design and frontend engineering project.
+NOVA is built with performance in mind through:
 
-Flight schedules, airport locations, operational information, airlines, routes, waiting times and other aviation data displayed within the project are mock data and should not be used for real-world travel decisions.
-
-Any real airline, airport, city or aircraft names used within the interface are included solely for demonstration purposes.
+- Next.js image optimization
+- Responsive image sizing
+- Lazy loading for non-critical imagery
+- Server Components where appropriate
+- Client Components limited to interactive experiences
+- Purposeful Framer Motion usage
+- Reduced-motion considerations
+- Reusable data structures
+- Responsive layouts
+- Optimized font loading
 
 ---
 
-## 👨🏽‍💻 Project Focus
+## SEO
 
-NOVA is an exploration of what happens when frontend engineering is treated as more than implementing static screens.
+The project includes:
 
-The project focuses on:
+- Next.js Metadata API
+- Page-specific metadata
+- Open Graph metadata
+- Twitter/X sharing metadata
+- Canonical URLs
+- Search-engine directives
+- Sitemap generation
+- Robots configuration
+- Semantic page structure
+- Social sharing imagery
 
-- Frontend architecture
+---
+
+## Important Note
+
+**NOVA International Airport is a fictional concept project.**
+
+It is not affiliated with, operated by, or representative of a real airport.
+
+Flight schedules, airlines, gates, terminal information, passenger information, airport operations, contact information, services, and other operational data displayed throughout the project are mock data created for demonstration purposes.
+
+No real flight booking, airport operations, passenger tracking, or airport database services are provided through this project.
+
+---
+
+## Purpose
+
+NOVA was created as a portfolio project focused on demonstrating:
+
+- Frontend engineering
+- UI/UX design
 - Interaction design
-- UI/UX
-- Responsive design
-- Motion systems
+- Responsive web development
+- Component architecture
+- Motion design
 - Information hierarchy
-- State management
-- Spatial interfaces
 - Product thinking
+- Creative problem solving
 
-The goal is simple:
+The challenge wasn't simply to create a visually attractive airport website.
 
-> **Make a complex environment feel effortless.**
+It was to explore:
+
+> **What would an airport digital experience feel like if the journey itself shaped the interface?**
 
 ---
 
-## License
+## Author
 
-This project is intended for portfolio and educational purposes.
+Designed and developed by **Temitope**.
+
+Portfolio: [temitope112.vercel.app](https://temitope112.vercel.app/)
+
+GitHub: [Temitope112](https://github.com/Temitope112)
+
+---
+
+## Feedback
+
+Feedback, ideas, and critiques are welcome.
+
+If something catches your attention — whether it's the interface, motion, usability, responsiveness, or code — feel free to share your thoughts.
 
 ---
 
 <p align="center">
   <strong>NOVA International Airport</strong><br />
-  <sub>Every journey begins somewhere.</sub>
+  <sub>Where are you headed?</sub>
 </p>

@@ -53,10 +53,7 @@ export default function ExplorePage() {
             y: heroY,
             opacity: heroOpacity,
           }}
-          className="
-            absolute
-            inset-0
-          "
+          className="absolute inset-0"
         >
           <Image
             src="/cape-town.png"
@@ -64,10 +61,7 @@ export default function ExplorePage() {
             fill
             priority
             sizes="100vw"
-            className="
-              object-cover
-              opacity-55
-            "
+            className="object-cover opacity-55"
           />
 
           <div
@@ -86,25 +80,20 @@ export default function ExplorePage() {
           className="
             relative
             z-10
-
             mx-auto
             flex
             min-h-[calc(100svh-var(--navbar-height))]
             max-w-[1600px]
             flex-col
             justify-between
-
             px-5
             pb-8
             pt-10
-
             sm:px-8
             sm:pb-10
-
             lg:px-12
             lg:pb-12
             lg:pt-14
-
             xl:px-16
           "
         >
@@ -113,7 +102,6 @@ export default function ExplorePage() {
               flex
               items-center
               justify-between
-
               text-[9px]
               uppercase
               tracking-[0.22em]
@@ -143,7 +131,6 @@ export default function ExplorePage() {
             <p
               className="
                 mb-6
-
                 text-[9px]
                 uppercase
                 tracking-[0.22em]
@@ -172,12 +159,9 @@ export default function ExplorePage() {
               flex
               flex-col
               gap-6
-
               border-t
               border-white/15
-
               pt-6
-
               sm:flex-row
               sm:items-end
               sm:justify-between
@@ -186,7 +170,6 @@ export default function ExplorePage() {
             <p
               className="
                 max-w-md
-
                 text-sm
                 leading-6
                 text-white/50
@@ -200,11 +183,9 @@ export default function ExplorePage() {
               href="#discover"
               className="
                 group
-
                 inline-flex
                 items-center
                 gap-3
-
                 text-[9px]
                 uppercase
                 tracking-[0.2em]
@@ -218,7 +199,6 @@ export default function ExplorePage() {
                 className="
                   transition-transform
                   duration-300
-
                   group-hover:translate-y-1
                 "
               />
@@ -232,15 +212,11 @@ export default function ExplorePage() {
         id="discover"
         className="
           bg-[#f5f2eb]
-
           px-5
           py-24
-
           sm:px-8
-
           lg:px-12
           lg:py-36
-
           xl:px-16
         "
       >
@@ -250,7 +226,6 @@ export default function ExplorePage() {
             grid
             max-w-[1600px]
             gap-12
-
             lg:grid-cols-[0.6fr_1.4fr]
           "
         >
@@ -287,7 +262,6 @@ export default function ExplorePage() {
             <h2
               className="
                 max-w-[950px]
-
                 text-[clamp(2.8rem,6vw,6rem)]
                 font-medium
                 leading-[0.95]
@@ -302,7 +276,6 @@ export default function ExplorePage() {
               className="
                 mt-8
                 max-w-xl
-
                 text-base
                 leading-7
                 text-[#111820]/50
@@ -321,25 +294,16 @@ export default function ExplorePage() {
       <section
         className="
           bg-[#faf9f6]
-
           px-5
           py-20
-
           sm:px-8
-
           lg:px-12
           lg:py-28
-
           xl:px-16
         "
       >
         <div className="mx-auto max-w-[1600px]">
-          <div
-            className="
-              border-t
-              border-[#111820]/15
-            "
-          >
+          <div className="border-t border-[#111820]/15">
             {exploreStories.map(
               (story, index) => (
                 <motion.div
@@ -361,18 +325,13 @@ export default function ExplorePage() {
                   }}
                   className="
                     group
-
                     grid
                     gap-5
-
                     border-b
                     border-[#111820]/15
-
                     py-9
-
                     sm:grid-cols-[80px_160px_1fr]
                     sm:items-start
-
                     lg:grid-cols-[110px_210px_1fr]
                     lg:py-12
                   "
@@ -402,19 +361,16 @@ export default function ExplorePage() {
                     className="
                       grid
                       gap-5
-
                       lg:grid-cols-[1fr_0.7fr]
                     "
                   >
                     <h3
                       className="
                         max-w-xl
-
                         text-3xl
                         font-medium
                         leading-[1]
                         tracking-[-0.05em]
-
                         lg:text-4xl
                       "
                     >
@@ -424,7 +380,6 @@ export default function ExplorePage() {
                     <p
                       className="
                         max-w-md
-
                         text-sm
                         leading-6
                         text-[#111820]/45
@@ -444,15 +399,11 @@ export default function ExplorePage() {
       <section
         className="
           bg-[#e9e0d2]
-
           px-5
           py-24
-
           sm:px-8
-
           lg:px-12
           lg:py-32
-
           xl:px-16
         "
       >
@@ -462,7 +413,6 @@ export default function ExplorePage() {
               flex
               flex-col
               gap-8
-
               sm:flex-row
               sm:items-end
               sm:justify-between
@@ -483,7 +433,6 @@ export default function ExplorePage() {
               <h2
                 className="
                   mt-5
-
                   text-[clamp(3.5rem,7vw,7rem)]
                   font-medium
                   leading-[0.85]
@@ -500,11 +449,9 @@ export default function ExplorePage() {
               href="/flights"
               className="
                 group
-
                 inline-flex
                 items-center
                 gap-3
-
                 text-[9px]
                 uppercase
                 tracking-[0.2em]
@@ -518,7 +465,6 @@ export default function ExplorePage() {
                 className="
                   transition-transform
                   duration-300
-
                   group-hover:-translate-y-0.5
                   group-hover:translate-x-0.5
                 "
@@ -529,12 +475,9 @@ export default function ExplorePage() {
           <div
             className="
               mt-14
-
               grid
               gap-4
-
               md:grid-cols-2
-
               lg:mt-20
               lg:grid-cols-12
             "
@@ -566,11 +509,8 @@ export default function ExplorePage() {
                     className={`
                       group
                       relative
-
                       min-h-[430px]
-
                       overflow-hidden
-
                       ${
                         large
                           ? "lg:col-span-7"
@@ -585,11 +525,9 @@ export default function ExplorePage() {
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="
                         object-cover
-
                         transition-transform
                         duration-1000
                         ease-out
-
                         group-hover:scale-[1.045]
                       "
                     />
@@ -598,7 +536,6 @@ export default function ExplorePage() {
                       className="
                         absolute
                         inset-0
-
                         bg-gradient-to-t
                         from-[#111820]/85
                         via-[#111820]/10
@@ -611,11 +548,8 @@ export default function ExplorePage() {
                         absolute
                         inset-x-0
                         bottom-0
-
                         p-6
-
                         text-white
-
                         sm:p-8
                       "
                     >
@@ -643,11 +577,9 @@ export default function ExplorePage() {
                           <h3
                             className="
                               mt-2
-
                               text-4xl
                               font-medium
                               tracking-[-0.055em]
-
                               sm:text-5xl
                             "
                           >
@@ -658,7 +590,6 @@ export default function ExplorePage() {
                             className="
                               mt-3
                               max-w-sm
-
                               text-xs
                               leading-5
                               text-white/55
@@ -674,10 +605,8 @@ export default function ExplorePage() {
                           className="
                             shrink-0
                             text-white/50
-
                             transition-transform
                             duration-300
-
                             group-hover:-translate-y-1
                             group-hover:translate-x-1
                           "
@@ -693,36 +622,28 @@ export default function ExplorePage() {
       </section>
 
       {/* LAGOS */}
-      <section
-        className="
-          bg-[#111820]
-          text-white
-        "
-      >
+      <section className="bg-[#111820] text-white">
         <div
           className="
-            mx-auto
             grid
-            max-w-[1600px]
-
+            w-full
             lg:min-h-[760px]
             lg:grid-cols-2
           "
         >
+          {/* Content */}
           <div
             className="
               flex
+              min-h-[560px]
               flex-col
               justify-between
-
               px-5
               py-16
-
               sm:px-8
-
+              lg:min-h-[760px]
               lg:px-12
               lg:py-20
-
               xl:px-16
             "
           >
@@ -755,7 +676,6 @@ export default function ExplorePage() {
                 className="
                   mt-8
                   max-w-md
-
                   text-sm
                   leading-6
                   text-white/45
@@ -771,16 +691,12 @@ export default function ExplorePage() {
               href="/plan"
               className="
                 group
-
                 flex
                 items-center
                 justify-between
-
                 border-t
                 border-white/15
-
                 pt-5
-
                 text-sm
               "
             >
@@ -792,53 +708,64 @@ export default function ExplorePage() {
                 className="
                   transition-transform
                   duration-300
-
                   group-hover:translate-x-1
                 "
               />
             </Link>
           </div>
 
+          {/* Image */}
           <div
             className="
               relative
-
               min-h-[520px]
-
-              lg:min-h-full
+              w-full
+              overflow-hidden
+              lg:min-h-[760px]
             "
           >
             <Image
               src="/lagos.png"
-              alt="Lagos"
+              alt="Lagos city"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
+
+            <div className="absolute inset-0 bg-[#111820]/5" />
+
+            <div
+              className="
+                absolute
+                bottom-6
+                right-6
+                bg-[#faf9f6]
+                px-4
+                py-3
+                text-[#111820]
+                sm:bottom-8
+                sm:right-8
+              "
+            >
+              <p className="text-[8px] uppercase tracking-[0.18em] text-[#111820]/50">
+                Lagos · Nigeria
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* FINAL */}
-      <section
-        className="
-          bg-[#315b78]
-          text-white
-        "
-      >
+      <section className="bg-[#315b78] text-white">
         <div
           className="
             mx-auto
             max-w-[1600px]
-
             px-5
             py-20
-
             sm:px-8
-
             lg:px-12
             lg:py-28
-
             xl:px-16
           "
         >
@@ -846,7 +773,6 @@ export default function ExplorePage() {
             className="
               grid
               gap-10
-
               lg:grid-cols-[1.3fr_0.7fr]
               lg:items-end
             "
@@ -854,7 +780,6 @@ export default function ExplorePage() {
             <h2
               className="
                 max-w-[900px]
-
                 text-[clamp(3.5rem,7vw,7rem)]
                 font-medium
                 leading-[0.86]
@@ -866,15 +791,10 @@ export default function ExplorePage() {
               starts here.
             </h2>
 
-            <div
-              className="
-                lg:justify-self-end
-              "
-            >
+            <div className="lg:justify-self-end">
               <p
                 className="
                   max-w-sm
-
                   text-sm
                   leading-6
                   text-white/55
@@ -889,18 +809,13 @@ export default function ExplorePage() {
                 href="/flights"
                 className="
                   group
-
                   mt-7
-
                   inline-flex
                   items-center
                   gap-3
-
                   border-b
                   border-white/30
-
                   pb-2
-
                   text-sm
                 "
               >
@@ -912,7 +827,6 @@ export default function ExplorePage() {
                   className="
                     transition-transform
                     duration-300
-
                     group-hover:-translate-y-0.5
                     group-hover:translate-x-0.5
                   "

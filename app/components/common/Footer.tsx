@@ -63,6 +63,10 @@ const footerNavigation = [
         label: "Airport Experience",
         href: "/explore/experience",
       },
+      {
+        label: "Experience",
+        href: "/experience",
+      },
     ],
   },
   {

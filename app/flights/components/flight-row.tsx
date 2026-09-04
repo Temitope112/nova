@@ -1,7 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Star,
+} from "lucide-react";
 
 import type {
   Flight,
@@ -12,7 +15,10 @@ interface FlightRowProps {
   flight: Flight;
   index: number;
   selected: boolean;
+  saved: boolean;
+  saving: boolean;
   onSelect: () => void;
+  onToggleSaved: () => void;
 }
 
 const statusLabels: Record<
@@ -25,19 +31,21 @@ const statusLabels: Record<
   delayed: "Delayed",
   landed: "Landed",
   scheduled: "Scheduled",
+  cancelled: "Cancelled",
 };
 
 export default function FlightRow({
   flight,
   index,
   selected,
+  saved,
+  saving,
   onSelect,
+  onToggleSaved,
 }: FlightRowProps) {
   return (
-    <motion.button
+    <motion.div
       layout
-      type="button"
-      onClick={onSelect}
       initial={{
         opacity: 0,
         y: 18,
@@ -68,12 +76,10 @@ export default function FlightRow({
         px-5
         py-6
 
-        text-left
-
         transition-colors
         duration-300
 
-        md:grid-cols-[90px_1.5fr_0.8fr_80px_70px_130px]
+        md:grid-cols-[90px_1.5fr_0.8fr_80px_70px_130px_50px]
         md:items-center
         md:gap-0
         md:px-6
@@ -101,7 +107,13 @@ export default function FlightRow({
         />
       )}
 
-      <div>
+      {/* TIME */}
+
+      <button
+        type="button"
+        onClick={onSelect}
+        className="text-left"
+      >
         <MobileLabel>Time</MobileLabel>
 
         <span
@@ -109,6 +121,7 @@ export default function FlightRow({
             text-xl
             font-medium
             tracking-[-0.04em]
+            text-white
           "
         >
           {flight.scheduledTime}
@@ -127,9 +140,15 @@ export default function FlightRow({
             Est. {flight.estimatedTime}
           </span>
         )}
-      </div>
+      </button>
 
-      <div>
+      {/* DESTINATION */}
+
+      <button
+        type="button"
+        onClick={onSelect}
+        className="text-left"
+      >
         <MobileLabel>
           {flight.type === "departure"
             ? "Destination"
@@ -141,6 +160,7 @@ export default function FlightRow({
             text-lg
             font-medium
             tracking-[-0.03em]
+            text-white
           "
         >
           {flight.city}
@@ -157,12 +177,18 @@ export default function FlightRow({
         >
           {flight.airportCode}
         </p>
-      </div>
+      </button>
 
-      <div>
+      {/* FLIGHT */}
+
+      <button
+        type="button"
+        onClick={onSelect}
+        className="text-left"
+      >
         <MobileLabel>Flight</MobileLabel>
 
-        <p className="text-sm">
+        <p className="text-sm text-white">
           {flight.flightNumber}
         </p>
 
@@ -175,24 +201,45 @@ export default function FlightRow({
         >
           {flight.airline}
         </p>
-      </div>
+      </button>
 
-      <FlightValue
-        label="Terminal"
-        value={flight.terminal}
-      />
+      {/* TERMINAL */}
 
-      <FlightValue
-        label="Gate"
-        value={flight.gate}
-      />
+      <button
+        type="button"
+        onClick={onSelect}
+        className="text-left"
+      >
+        <FlightValue
+          label="Terminal"
+          value={flight.terminal}
+        />
+      </button>
 
-      <div
+      {/* GATE */}
+
+      <button
+        type="button"
+        onClick={onSelect}
+        className="text-left"
+      >
+        <FlightValue
+          label="Gate"
+          value={flight.gate}
+        />
+      </button>
+
+      {/* STATUS */}
+
+      <button
+        type="button"
+        onClick={onSelect}
         className="
           flex
           items-center
           justify-between
           gap-4
+          text-left
         "
       >
         <div>
@@ -216,8 +263,85 @@ export default function FlightRow({
             md:hidden
           "
         />
+      </button>
+
+      {/* SAVE */}
+
+      <div
+        className="
+          flex
+          items-center
+          justify-between
+
+          md:justify-end
+        "
+      >
+        <MobileLabel>Save flight</MobileLabel>
+
+        <button
+          type="button"
+          onClick={onToggleSaved}
+          disabled={saving}
+          aria-label={
+            saved
+              ? `Remove ${flight.flightNumber} from saved flights`
+              : `Save ${flight.flightNumber}`
+          }
+          title={
+            saved
+              ? "Remove saved flight"
+              : "Save flight"
+          }
+          className={`
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+
+            rounded-full
+            border
+
+            transition-all
+            duration-200
+
+            disabled:cursor-not-allowed
+            disabled:opacity-50
+
+            ${
+              saved
+                ? "border-[#e8a735]/40 bg-[#e8a735]/10 text-[#e8a735]"
+                : "border-white/10 bg-white/[0.04] text-white/35 hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
+            }
+          `}
+        >
+          {saving ? (
+            <span
+              className="
+                h-4
+                w-4
+                animate-spin
+
+                rounded-full
+                border-2
+                border-white/20
+                border-t-white
+              "
+            />
+          ) : (
+            <Star
+              size={15}
+              strokeWidth={1.6}
+              fill={
+                saved
+                  ? "currentColor"
+                  : "none"
+              }
+            />
+          )}
+        </button>
       </div>
-    </motion.button>
+    </motion.div>
   );
 }
 
@@ -272,7 +396,11 @@ function Status({
     status === "boarding" ||
     status === "gate-closing";
 
-  const delayed = status === "delayed";
+  const delayed =
+    status === "delayed";
+
+  const cancelled =
+    status === "cancelled";
 
   return (
     <span
@@ -286,11 +414,13 @@ function Status({
         tracking-[0.14em]
 
         ${
-          delayed
-            ? "text-[#e8a735]"
-            : urgent
-              ? "text-white"
-              : "text-white/45"
+          cancelled
+            ? "text-red-400"
+            : delayed
+              ? "text-[#e8a735]"
+              : urgent
+                ? "text-white"
+                : "text-white/45"
         }
       `}
     >

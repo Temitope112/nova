@@ -12,19 +12,30 @@ import FlightRow from "./flight-row";
 interface FlightsBoardProps {
   flights: Flight[];
   selectedFlight: Flight | null;
-  onSelectFlight: (flight: Flight) => void;
+  savedFlightIds: Set<string>;
+  savingFlightId: string | null;
+
+  onSelectFlight: (
+    flight: Flight
+  ) => void;
+
+  onToggleSaved: (
+    flight: Flight
+  ) => void;
 }
 
 export default function FlightsBoard({
   flights,
   selectedFlight,
+  savedFlightIds,
+  savingFlightId,
   onSelectFlight,
+  onToggleSaved,
 }: FlightsBoardProps) {
   return (
     <div
       className="
         overflow-hidden
-
         bg-[#111820]
         text-white
       "
@@ -33,7 +44,7 @@ export default function FlightsBoard({
         className="
           hidden
 
-          grid-cols-[90px_1.5fr_0.8fr_80px_70px_130px]
+          grid-cols-[90px_1.5fr_0.8fr_80px_70px_130px_50px]
 
           border-b
           border-white/10
@@ -55,6 +66,9 @@ export default function FlightsBoard({
         <span>Terminal</span>
         <span>Gate</span>
         <span>Status</span>
+        <span className="text-right">
+          Save
+        </span>
       </div>
 
       <AnimatePresence mode="popLayout">
@@ -65,10 +79,21 @@ export default function FlightsBoard({
               flight={flight}
               index={index}
               selected={
-                selectedFlight?.id === flight.id
+                selectedFlight?.id ===
+                flight.id
+              }
+              saved={savedFlightIds.has(
+                flight.id
+              )}
+              saving={
+                savingFlightId ===
+                flight.id
               }
               onSelect={() =>
                 onSelectFlight(flight)
+              }
+              onToggleSaved={() =>
+                onToggleSaved(flight)
               }
             />
           ))

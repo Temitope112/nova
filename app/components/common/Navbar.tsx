@@ -127,7 +127,7 @@ export default function Navbar() {
         </nav>
 
         <Link
-          href="/journey"
+          href="/dashboard/journey"
           className="
             group hidden items-center gap-2
             rounded-full bg-white/90
@@ -258,7 +258,7 @@ function MobileNavigation({
       </nav>
 
       <Link
-        href="/journey"
+        href="/dashboard/journey"
         onClick={onNavigate}
         className="
           mt-6 flex items-center justify-between

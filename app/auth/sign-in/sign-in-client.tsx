@@ -3,12 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import {
-  ArrowRight,
-  Eye,
-  EyeOff,
-  Plane,
-} from "lucide-react";
+import { ArrowRight, Eye, EyeOff, Plane } from "lucide-react";
 
 import { createClient } from "@/app/lib/supabase/client";
 
@@ -18,8 +13,7 @@ export default function SignInClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const redirectTo =
-    searchParams.get("redirect") || "/dashboard";
+  const requestedRedirect = searchParams.get("redirect");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,27 +24,65 @@ export default function SignInClient() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSignIn = async (
-    e: FormEvent<HTMLFormElement>
-  ) => {
+  const handleSignIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setLoading(true);
     setMessage("");
 
-    const { error } =
+    const { data: authData, error: authError } =
       await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-    if (error) {
-      setMessage(error.message);
+    if (authError) {
+      setMessage(authError.message);
       setLoading(false);
       return;
     }
 
-    router.replace(redirectTo);
+    const user = authData.user;
+
+    if (!user) {
+      setMessage("Unable to verify your account.");
+      setLoading(false);
+      return;
+    }
+
+    const { data: roleData, error: roleError } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", user.id)
+      .single();
+
+    if (roleError || !roleData) {
+      setMessage("Your account role could not be verified.");
+      setLoading(false);
+      return;
+    }
+
+    const role = roleData.role as "passenger" | "admin";
+
+    const isAdminPath =
+      requestedRedirect === "/admin" ||
+      requestedRedirect?.startsWith("/admin/");
+
+    const isPassengerPath =
+      requestedRedirect === "/dashboard" ||
+      requestedRedirect?.startsWith("/dashboard/");
+
+    let destination: string;
+
+    if (role === "admin") {
+      destination =
+        requestedRedirect && isAdminPath ? requestedRedirect : "/admin";
+    } else {
+      destination =
+        requestedRedirect && isPassengerPath ? requestedRedirect : "/dashboard";
+    }
+
+    router.replace(destination);
     router.refresh();
   };
 
@@ -71,7 +103,6 @@ export default function SignInClient() {
               <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5">
                 <Plane className="h-4 w-4" />
               </span>
-
               NOVA
             </Link>
           </div>
@@ -90,15 +121,14 @@ export default function SignInClient() {
             </h2>
 
             <p className="mt-7 max-w-md text-base leading-7 text-white/50">
-              Sign in to view your saved flights,
-              manage your journey and continue your
-              personalized NOVA airport experience.
+              Sign in to view your saved flights, manage your journey and
+              continue your personalized NOVA airport experience.
             </p>
           </div>
 
           <div className="relative z-10 flex items-center justify-between border-t border-white/10 pt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">
             <span>NOVA / LOS</span>
-            <span>Passenger access</span>
+            <span>secure access</span>
           </div>
         </section>
 
@@ -119,7 +149,7 @@ export default function SignInClient() {
             {/* HEADER */}
             <div className="mt-10 lg:mt-0">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#315b78]">
-                Passenger sign in
+                NOVA sign in
               </p>
 
               <h1 className="mt-3 text-4xl font-medium tracking-[-0.04em] sm:text-5xl">
@@ -129,9 +159,13 @@ export default function SignInClient() {
               <p className="mt-4 text-sm leading-6 text-[#111820]/55">
                 New to NOVA?{" "}
                 <Link
-                  href={`/auth/sign-up?redirect=${encodeURIComponent(
-                    redirectTo
-                  )}`}
+                  href={
+                    requestedRedirect
+                      ? `/auth/sign-up?redirect=${encodeURIComponent(
+                          requestedRedirect,
+                        )}`
+                      : "/auth/sign-up"
+                  }
                   className="font-medium !text-[#111820] underline decoration-[#111820]/30 underline-offset-4 transition hover:decoration-[#111820]"
                 >
                   Create an account
@@ -140,10 +174,7 @@ export default function SignInClient() {
             </div>
 
             {/* FORM */}
-            <form
-              onSubmit={handleSignIn}
-              className="mt-10 space-y-6"
-            >
+            <form onSubmit={handleSignIn} className="mt-10 space-y-6">
               {/* EMAIL */}
               <div>
                 <label
@@ -158,9 +189,7 @@ export default function SignInClient() {
                   type="email"
                   autoComplete="email"
                   value={email}
-                  onChange={(e) =>
-                    setEmail(e.target.value)
-                  }
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
                   className="w-full border-0 border-b border-[#111820]/20 bg-transparent px-0 py-3 text-base outline-none transition placeholder:text-[#111820]/30 focus:border-[#315b78]"
@@ -188,16 +217,10 @@ export default function SignInClient() {
                 <div className="relative">
                   <input
                     id="password"
-                    type={
-                      showPassword
-                        ? "text"
-                        : "password"
-                    }
+                    type={showPassword ? "text" : "password"}
                     autoComplete="current-password"
                     value={password}
-                    onChange={(e) =>
-                      setPassword(e.target.value)
-                    }
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     required
                     className="w-full border-0 border-b border-[#111820]/20 bg-transparent py-3 pr-12 text-base outline-none transition placeholder:text-[#111820]/30 focus:border-[#315b78]"
@@ -205,15 +228,9 @@ export default function SignInClient() {
 
                   <button
                     type="button"
-                    onClick={() =>
-                      setShowPassword(
-                        (current) => !current
-                      )
-                    }
+                    onClick={() => setShowPassword((current) => !current)}
                     aria-label={
-                      showPassword
-                        ? "Hide password"
-                        : "Show password"
+                      showPassword ? "Hide password" : "Show password"
                     }
                     className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-[#111820]/45 transition hover:text-[#111820]"
                   >
@@ -231,9 +248,7 @@ export default function SignInClient() {
                 <input
                   type="checkbox"
                   checked={rememberMe}
-                  onChange={(e) =>
-                    setRememberMe(e.target.checked)
-                  }
+                  onChange={(e) => setRememberMe(e.target.checked)}
                   className="h-4 w-4 accent-[#111820]"
                 />
 
@@ -258,18 +273,14 @@ export default function SignInClient() {
                 disabled={loading}
                 className="group flex w-full items-center justify-between rounded-full bg-[#111820] px-6 py-4 text-sm font-medium !text-white transition hover:bg-[#315b78] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <span>
-                  {loading
-                    ? "Signing you in..."
-                    : "Sign in"}
-                </span>
+                <span>{loading ? "Signing you in..." : "Sign in"}</span>
 
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </button>
             </form>
 
             <p className="mt-8 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-[#111820]/35">
-              Secure passenger access · NOVA
+              Secure access · NOVA
             </p>
           </div>
         </section>

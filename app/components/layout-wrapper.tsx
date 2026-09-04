@@ -14,7 +14,8 @@ export default function LayoutWrapper({
 
   const hidePublicChrome =
     pathname.startsWith("/auth") ||
-    pathname.startsWith("/dashboard");
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/admin");
 
   return (
     <>

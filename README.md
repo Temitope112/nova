@@ -1,241 +1,340 @@
-# NOVA International Airport ✈️
+# NOVA — Airport Experience Platform ✈️
 
-A modern digital airport experience designed to make every journey feel effortless.
+> Airports are complex. The interface should feel effortless.
 
-NOVA reimagines what an airport website can feel like — combining flight information, journey planning, terminal navigation, airport services, destination discovery, and purposeful motion into one cohesive experience.
+NOVA is a full-stack airport experience platform designed to make the passenger journey clearer, calmer, and more connected.
 
-> **Airports are complex. The interface shouldn't be.**
+What began as an exploration of airport interface design evolved into a complete product experience — combining public airport information, authenticated passenger journeys, flight management, notifications, lost & found, and a role-protected administrative system.
+
+NOVA is built around one simple journey:
+
+**Find → Prepare → Navigate → Experience → Explore**
 
 ---
 
 ## Overview
 
-NOVA International Airport is a frontend-focused concept project exploring how thoughtful UI/UX, interaction design, and modern web technologies can improve the digital airport experience.
+Airports contain a huge amount of information.
 
-Rather than approaching the website as a collection of pages and dashboards, NOVA is designed around the passenger journey:
+Flights. Gates. Terminals. Security. Navigation. Delays. Passenger services. Lost items. Operational updates.
 
-**Find → Prepare → Navigate → Experience → Explore**
+The challenge isn't simply displaying all that information.
 
-The goal was to create something that feels commercially believable while still pushing the visual and interactive experience beyond the typical airport website.
+The challenge is making it **easy to understand when someone actually needs it.**
 
----
-
-## Live Experience
-
-🔗 **Live Website:** https://nova-ashen-three.vercel.app/
+NOVA explores what an airport digital experience could look like when information architecture, wayfinding, interaction design, and real application logic are treated as one system.
 
 ---
 
-## Preview
+## The Experience
 
-![NOVA International Airport](./public/og-image.jpg)
+NOVA has three major layers.
 
----
+### Public Airport Experience
 
-## The Idea
+Visitors can explore the airport and access useful information without creating an account.
 
-Airport websites handle a huge amount of information:
+The public experience includes:
 
-- Flights
-- Terminals
-- Gates
-- Airport services
-- Journey preparation
-- Accessibility
-- Dining and shopping
-- Destinations
-- Passenger support
+- Flight information
+- Airport and terminal information
+- Journey discovery
+- Navigation-focused interfaces
+- Responsive airport experience
+- Clear calls into personalized features
 
-That complexity often results in interfaces that feel overwhelming or purely functional.
+The interface intentionally reveals more functionality as the passenger needs it.
 
-NOVA explores a different approach.
-
-The interface uses strong hierarchy, wayfinding-inspired visuals, contextual information, editorial layouts, and motion to help passengers understand where they are, where they're going, and what they can do next.
+For example, a visitor can freely explore NOVA — but accessing **My Journey** introduces authentication and transitions them into their personal airport experience.
 
 ---
 
-## Key Experiences
+### Passenger Experience
 
-### Flight Discovery
+Authenticated passengers receive a dedicated dashboard built around their journey.
 
-Passengers can explore departures and arrivals, search flights, filter information, and inspect individual flight details through an aviation-inspired flight board.
+Passengers can:
 
-### My Journey
+- View their journey
+- Save and manage flights
+- Access flight information
+- Receive notifications
+- Manage their profile
+- Configure preferences
+- Submit and track lost & found reports
 
-A contextual journey experience transforms flight information into a clear passenger timeline:
+Authentication and user-specific data are handled with Supabase.
 
-**Check-in → Security → Explore → Gate → Boarding**
-
-### Terminal Navigation
-
-An interactive terminal map uses route visualization, location markers, and contextual information to make navigating the airport easier to understand.
-
-### Airport Pulse
-
-A live-operation-inspired interface presents airport conditions such as security waiting times, terminal activity, weather, and operational information.
-
-### Destination Discovery
-
-Editorial destination layouts move beyond traditional airport listings and turn route discovery into a more visual travel experience.
-
-### Airport Experience
-
-Passengers can discover lounges, dining, shopping, art, family facilities, business spaces, and other experiences available throughout the airport.
-
-### Passenger Support
-
-NOVA also includes dedicated experiences for:
-
-- Accessibility
-- Lost & Found
-- Travel information
-- Airport services
-- Help Centre
-- Contact and enquiries
+Each passenger only has access to the data they are authorized to see.
 
 ---
 
-## Design Direction
+### Airport Administration
 
-NOVA combines three visual systems:
+NOVA also includes a separate role-protected administrative environment.
+
+The admin portal provides airport staff with tools for:
+
+- Operational overview
+- Flight management
+- Passenger inspection
+- Airport operations
+- Lost & found management
+- Passenger notifications
+- Administrative settings
+
+Admin access isn't simply hidden in the interface.
+
+Authorization is enforced through application-level role checks and database security policies.
+
+---
+
+## Role-Based Access
+
+NOVA currently supports two application roles:
+
+```text
+Passenger
+Admin
+```
+
+Roles are stored separately from user profile information.
+
+```text
+Authentication
+      │
+      ▼
+Authenticated User
+      │
+      ▼
+User Role
+   ┌──┴───┐
+   ▼      ▼
+Passenger Admin
+   │      │
+   ▼      ▼
+Dashboard Admin Portal
+```
+
+This allows the application to determine where an authenticated user belongs while keeping authorization concerns separate from profile data.
+
+Protected routes are also checked server-side rather than relying only on client-side navigation.
+
+---
+
+## Authentication
+
+NOVA includes a complete authentication experience:
+
+- Account creation
+- Sign in
+- Sign out
+- Protected routes
+- Role-aware redirects
+- Forgot password
+- Password recovery email
+- Secure password reset
+- Authenticated sessions
+
+The password recovery flow is designed to avoid exposing whether a submitted email belongs to an existing account.
+
+---
+
+## Database & Security
+
+NOVA uses Supabase for authentication and application data.
+
+Core data models include:
+
+```text
+profiles
+user_roles
+flights
+journeys
+saved_flights
+notifications
+lost_found_reports
+```
+
+Row Level Security (RLS) is used to enforce access at the database level.
+
+For example:
+
+- Passengers can access their own journeys
+- Passengers can manage their own saved flights
+- Users can access their own notifications
+- Users can update their own profiles
+- Passengers can submit and view their own lost & found reports
+- Administrative operations require an admin role
+- Flight management is restricted appropriately
+
+This means sensitive authorization does not depend solely on what the frontend chooses to display.
+
+---
+
+## Flight Management
+
+Flights act as a central source of truth across the application.
+
+The administrative portal supports flight management operations including:
+
+- Creating flights
+- Updating flight information
+- Managing flight status
+- Editing terminal and gate information
+- Deleting flights
+
+Supported flight states include:
+
+```text
+scheduled
+check_in
+boarding
+departed
+delayed
+cancelled
+arrived
+```
+
+Flight information can then be consumed across passenger and operational experiences.
+
+---
+
+## Lost & Found
+
+Passengers can submit lost item reports through their account.
+
+Airport administrators can inspect reports and move them through their operational lifecycle.
+
+```text
+submitted
+    ↓
+under_review
+    ↓
+matched
+    ↓
+resolved
+    ↓
+closed
+```
+
+This creates a shared workflow between the passenger-facing and administrative sides of NOVA.
+
+---
+
+## Notifications
+
+NOVA includes a notification system for communicating relevant updates to passengers.
+
+Notification types include:
+
+```text
+flight_update
+gate_change
+journey
+lost_found
+system
+```
+
+Administrators can create notifications while passengers can access their own notifications through their authenticated experience.
+
+---
+
+## Design Philosophy
+
+NOVA's visual direction combines:
 
 **International Wayfinding × Editorial Design × Aviation Systems**
 
-The interface takes inspiration from:
+The interface avoids the feeling of a traditional corporate dashboard.
 
-- Airport signage
-- Runway and taxiway markings
-- Departure boards
-- Flight paths
-- Terminal architecture
-- Gate numbering
-- Coordinates
-- Boarding information
-- Premium editorial layouts
+Instead, it uses:
 
-The result is intentionally spacious, architectural, functional, and motion-driven without becoming overly futuristic.
+- Strong typography
+- Large information hierarchy
+- Purposeful whitespace
+- Aviation-inspired information systems
+- Editorial composition
+- Subtle motion
+- Clear status indicators
+- Responsive layouts
+- Consistent passenger/admin visual language
 
----
+### Core Palette
 
-## Design Principles
-
-### 01. Clarity Before Decoration
-
-Every interaction should help passengers understand something or move somewhere.
-
-### 02. Motion Should Communicate
-
-Animation is used to reinforce movement, direction, progress, routes, and changes in information — not simply for decoration.
-
-### 03. Complexity Should Feel Simple
-
-Airport systems are complicated. The passenger-facing interface shouldn't feel that way.
-
-### 04. Every Section Has a Purpose
-
-The homepage is structured as a journey rather than a collection of unrelated sections.
-
-### 05. Responsive by Design
-
-The experience is designed to remain intentional across desktop, tablet, and mobile devices.
+| Color | Hex |
+|---|---|
+| Ink | `#111820` |
+| Ivory | `#f5f2eb` |
+| Paper | `#faf9f6` |
+| Mist | `#e8eff1` |
+| Sand | `#e9e0d2` |
+| Stone | `#d7d6d1` |
+| Aviation Blue | `#315b78` |
+| Signal Amber | `#e8a735` |
 
 ---
 
 ## Tech Stack
 
-NOVA was developed using:
+### Frontend
 
-- **Next.js**
-- **TypeScript**
-- **Tailwind CSS**
-- **Framer Motion**
-- **Lucide React**
-- **React Icons**
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lucide React / React Icons
 
-The project uses the **Next.js App Router** and is structured around reusable components and feature-specific data.
+### Backend & Data
 
----
+- Supabase
+- Supabase Authentication
+- PostgreSQL
+- Row Level Security (RLS)
 
-## Motion & Interaction
+### Deployment
 
-Motion plays an important role throughout NOVA.
-
-Some of the interactions include:
-
-- Scroll-driven hero transformation
-- Expanding airport photography
-- Subtle image parallax
-- Animated flight paths
-- Staggered search interactions
-- Flight status transitions
-- Journey progress visualization
-- Interactive terminal routes
-- Destination motion
-- Responsive navigation
-- Contextual hover states
-- Reduced-motion support
-
-The intention was not to animate everything, but to make movement feel connected to the idea of travel.
-
----
-
-## Pages
-
-NOVA includes dedicated experiences for:
-
-```text
-/
-├── Flights
-├── My Journey
-├── Plan Your Visit
-├── Airport
-│   ├── Airport Map
-│   ├── Dining
-│   ├── Shopping
-│   └── Lounges
-├── Explore
-│   ├── Destinations
-│   └── Airport Experience
-├── Experience
-├── Accessibility
-├── Help Centre
-│   └── Lost & Found
-├── Contact
-├── Privacy
-├── Terms
-└── Cookies
-```
-
-A custom **404 / off-route experience** is also included to keep navigation errors consistent with the NOVA design language.
+- Vercel
 
 ---
 
 ## Project Structure
 
 ```text
-nova/
-├── app/
+app/
+├── admin/
 │   ├── components/
-│   ├── airport/
-│   ├── accessibility/
-│   ├── contact/
-│   ├── experience/
-│   ├── explore/
 │   ├── flights/
-│   ├── journey/
-│   ├── plan/
-│   ├── privacy/
-│   ├── support/
-│   ├── terms/
-│   ├── cookies/
-│   ├── layout.tsx
-│   ├── not-found.tsx
-│   └── page.tsx
+│   ├── passengers/
+│   ├── operations/
+│   ├── lost-and-found/
+│   ├── notifications/
+│   └── settings/
 │
+├── auth/
+│   ├── sign-in/
+│   ├── sign-up/
+│   ├── forgot-password/
+│   └── reset-password/
+│
+├── dashboard/
+│   ├── components/
+│   ├── journey/
+│   ├── saved-flights/
+│   ├── notifications/
+│   ├── lost-and-found/
+│   ├── profile/
+│   └── settings/
+│
+├── components/
 ├── data/
-├── public/
-├── package.json
-└── README.md
+├── flights/
+├── journey/
+├── airport/
+└── lib/
+    ├── auth/
+    └── supabase/
 ```
 
 ---
@@ -248,7 +347,7 @@ Clone the repository:
 git clone https://github.com/Temitope112/nova.git
 ```
 
-Navigate into the project:
+Move into the project:
 
 ```bash
 cd nova
@@ -260,7 +359,14 @@ Install dependencies:
 npm install
 ```
 
-Start the development server:
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+```
+
+Then start the development server:
 
 ```bash
 npm run dev
@@ -272,113 +378,105 @@ Open:
 http://localhost:3000
 ```
 
-in your browser.
+---
+
+## Environment Variables
+
+NOVA requires a Supabase project.
+
+Never commit your real `.env.local` file or private credentials to the repository.
+
+Only public browser-safe Supabase credentials should use the `NEXT_PUBLIC_` prefix.
 
 ---
 
-## Production Build
+## Live Experience
 
-To create a production build:
+NOVA is deployed on Vercel.
 
-```bash
-npm run build
-```
+**Live:**  
+https://nova-ashen-three.vercel.app/
 
-Then run:
+Explore the public airport experience first.
 
-```bash
-npm run start
-```
+Then try **My Journey**.
 
----
-
-## Performance
-
-NOVA is built with performance in mind through:
-
-- Next.js image optimization
-- Responsive image sizing
-- Lazy loading for non-critical imagery
-- Server Components where appropriate
-- Client Components limited to interactive experiences
-- Purposeful Framer Motion usage
-- Reduced-motion considerations
-- Reusable data structures
-- Responsive layouts
-- Optimized font loading
+There might be more waiting behind it. ✈️
 
 ---
 
-## SEO
+## What I Learned
 
-The project includes:
+NOVA started as a frontend-focused airport experience, but building the complete product required thinking beyond individual pages.
 
-- Next.js Metadata API
-- Page-specific metadata
-- Open Graph metadata
-- Twitter/X sharing metadata
-- Canonical URLs
-- Search-engine directives
-- Sitemap generation
-- Robots configuration
-- Semantic page structure
-- Social sharing imagery
+The project became an exercise in:
 
----
+- Designing systems instead of isolated screens
+- Building reusable React components
+- Structuring a larger Next.js application
+- Connecting UI states to real application data
+- Authentication and session handling
+- Designing role-aware experiences
+- Server-side route protection
+- PostgreSQL data modelling
+- Row Level Security
+- CRUD workflows
+- Error and loading states
+- Responsive interface design
+- Maintaining visual consistency across public, passenger, and administrative experiences
 
-## Important Note
+One of the biggest lessons from NOVA was that a polished interface is only one part of a product.
 
-**NOVA International Airport is a fictional concept project.**
-
-It is not affiliated with, operated by, or representative of a real airport.
-
-Flight schedules, airlines, gates, terminal information, passenger information, airport operations, contact information, services, and other operational data displayed throughout the project are mock data created for demonstration purposes.
-
-No real flight booking, airport operations, passenger tracking, or airport database services are provided through this project.
+The experience also depends on **what users can access, when they can access it, and what the system allows them to do.**
 
 ---
 
-## Purpose
+## Current Status
 
-NOVA was created as a portfolio project focused on demonstrating:
+NOVA is a portfolio project and product exploration.
 
-- Frontend engineering
-- UI/UX design
-- Interaction design
-- Responsive web development
-- Component architecture
-- Motion design
-- Information hierarchy
-- Product thinking
-- Creative problem solving
+Core functionality currently includes:
 
-The challenge wasn't simply to create a visually attractive airport website.
+**Public Experience → Authentication → Passenger Dashboard → Admin Portal → Supabase Data → Role-Based Authorization**
 
-It was to explore:
+The application is actively designed as a realistic airport digital product, while some operational functionality remains simulated rather than connected to real airport infrastructure.
 
-> **What would an airport digital experience feel like if the journey itself shaped the interface?**
+---
+
+## Future Possibilities
+
+NOVA could be extended with:
+
+- Real-time flight data
+- Live gate changes
+- Real airport APIs
+- Interactive terminal maps
+- Indoor wayfinding
+- Boarding pass integration
+- Live operational alerts
+- Push notifications
+- Custom transactional email
+- Airline integrations
+- Airport service integrations
+- More advanced administrative analytics
 
 ---
 
 ## Author
 
-Designed and developed by **Temitope**.
+**Temitope Eniola Olagunju**
 
-Portfolio: [temitope112.vercel.app](https://temitope112.vercel.app/)
+Frontend Developer & software engineer
 
-GitHub: [Temitope112](https://github.com/Temitope112)
-
----
-
-## Feedback
-
-Feedback, ideas, and critiques are welcome.
-
-If something catches your attention — whether it's the interface, motion, usability, responsiveness, or code — feel free to share your thoughts.
+Portfolio:  
+https://temitope112.vercel.app/
 
 ---
 
-<p align="center">
-  <strong>NOVA International Airport</strong><br />
-  <sub>Where are you headed?</sub>
-</p>
+## Final Note
+
+NOVA isn't an attempt to make airports less complex.
+
+It's an attempt to make that complexity feel effortless to the people moving through them.
+
+**NOVA — Airports are complex. The interface should feel effortless.**
